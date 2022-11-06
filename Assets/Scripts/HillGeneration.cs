@@ -30,6 +30,7 @@ public class HillGeneration : MonoBehaviour
     private Vector2[] uvs;
     private Vector3[] normals;
     private bool updateTerrain = true;
+    private float timeGeneration;
 
     private Mesh mesh;
 
@@ -42,11 +43,9 @@ public class HillGeneration : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (updateTerrain) // Checks to see if the bool is true, before generating the terrain
-        {
-            updateTerrain = false;
-            CreateTerrain();
-        }
+        timeGeneration += Time.deltaTime;
+        
+        CreateTerrain();
     }
 
     void CreateTerrain()
