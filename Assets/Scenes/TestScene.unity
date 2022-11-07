@@ -535,6 +535,13 @@ MonoBehaviour:
   cellsZ1: 10
   perlinStepSizeX: 0.5
   perlinStepSizeZ: 0.5
+  vertices: []
+  triangles: 
+  uvs: []
+  normals: []
+  updateTerrain: 1
+  timeGeneration: 0
+  mesh: {fileID: 0}
 --- !u!64 &1050496243
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -653,6 +660,13 @@ MonoBehaviour:
   cellsZ1: 10
   perlinStepSizeX: 0.5
   perlinStepSizeZ: 0.5
+  vertices: []
+  triangles: 
+  uvs: []
+  normals: []
+  updateTerrain: 1
+  timeGeneration: 0
+  mesh: {fileID: 0}
 --- !u!64 &1494711417
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -836,6 +850,7 @@ MonoBehaviour:
   cameraDistanceFromPlayer: 25
   cameraHeight: 10
   boatBody: {fileID: 1513626635}
+  cameraTransform: {fileID: 0}
 --- !u!54 &1513626635
 Rigidbody:
   m_ObjectHideFlags: 0

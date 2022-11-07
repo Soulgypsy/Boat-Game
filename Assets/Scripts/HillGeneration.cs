@@ -31,6 +31,7 @@ public class HillGeneration : MonoBehaviour
     private Vector3[] normals;
     private bool updateTerrain = true;
     private float timeGeneration;
+    private bool waveDirection;
 
     private Mesh mesh;
 
@@ -43,8 +44,26 @@ public class HillGeneration : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        timeGeneration += Time.deltaTime;
+        if (timeGeneration >= 0.5f && timeGeneration >= 0f)
+        {
+            waveDirection = true;
+        }
+        else if (timeGeneration <= 0f && timeGeneration < 0.5f)
+        {
+            waveDirection = false;
+        }
         
+        if(waveDirection == true)
+        {
+            timeGeneration -= Time.deltaTime;
+            print(timeGeneration);
+        }
+        else if (waveDirection == false)
+        {
+            timeGeneration += Time.deltaTime;
+            print(timeGeneration);
+        }
+
         CreateTerrain();
     }
 
@@ -79,7 +98,7 @@ public class HillGeneration : MonoBehaviour
                 float percentageX = (float)x / (float)cellsX1;
                 float startX = percentageX * width;
 
-                float height = Mathf.PerlinNoise(perlinStepSizeX * x, perlinStepSizeZ * z) * maxHeight;
+                float height = Mathf.PerlinNoise(perlinStepSizeX * x, perlinStepSizeZ * z) * timeGeneration * maxHeight;
 
                 float heightPercentage = height / maxHeight;
                 
