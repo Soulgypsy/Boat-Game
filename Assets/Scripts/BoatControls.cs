@@ -6,12 +6,9 @@ public class BoatControls : MonoBehaviour
 {
     public float moveSpeedForward;
     public float moveSpeedBackwards;
-    public float turnSpeedLeft;
-    public float turnSpeedRight;
-    public Vector3 boatMovement;
-    public float moveMaxSpeed = 10f;
-    public float turnMaxSpeed = 0.5f; // For the speed of the rotation
-    public float turnMaxRotation = 0.1f; // To clamp the rotation of the torque;
+    public float turnSpeed;
+    public Vector3 boatTurning;
+    public float moveMaxSpeed = 70f; // Change this for max speed, along with the drag value in the rigidbody
     public float cameraDistanceFromPlayer = 5f;
     public float cameraHeight = 5f;
     public Rigidbody boatBody;
@@ -24,8 +21,8 @@ public class BoatControls : MonoBehaviour
         cameraTransform = Camera.main.transform;
         moveSpeedForward = 0f;
         moveSpeedBackwards = 0f;
-        turnSpeedLeft = 0f;
-        turnSpeedRight = 0f;
+        turnSpeed = 50f; // Change this for turning speed, along with the angular drag value in the rigidbody
+        boatTurning = new Vector3(0, turnSpeed, 0);
     }
 
     // FixedUpdate is called once per frame
@@ -35,7 +32,7 @@ public class BoatControls : MonoBehaviour
             {
             if(moveSpeedForward <= moveMaxSpeed)
             {
-                moveSpeedForward += 2f * Time.deltaTime; // moveSpeed is multiplied over time to the cap
+                moveSpeedForward += 5f; // moveSpeed is multiplied over time to the cap
             }
             float force = Input.GetAxis("Vertical");
             boatBody.AddForce(transform.forward * moveSpeedForward * force);
@@ -44,7 +41,7 @@ public class BoatControls : MonoBehaviour
         {
             if (moveSpeedForward != 0f)
             {
-                moveSpeedForward -= Time.deltaTime; // moveSpeed is divided over time to zero
+                moveSpeedForward -= 10f; // moveSpeed is subtracted over time to zero
             } 
         }
 
@@ -52,7 +49,7 @@ public class BoatControls : MonoBehaviour
         {
             if (moveSpeedBackwards <= moveMaxSpeed)
             {
-                moveSpeedBackwards += 2f * Time.deltaTime; // moveSpeed is multiplied over time to the cap
+                moveSpeedBackwards += 5f; // moveSpeed is added over time to the cap
             }
             float force = Input.GetAxis("Vertical");
             boatBody.AddForce(transform.forward * moveSpeedForward * force);
@@ -61,50 +58,20 @@ public class BoatControls : MonoBehaviour
         {
             if (moveSpeedBackwards != 0f)
             {
-                moveSpeedBackwards -= Time.deltaTime; // moveSpeed is divided over time to zero
+                moveSpeedBackwards -= 10f; // moveSpeed is subtracted over time to zero
             }
         }
 
         if (Input.GetKey("a")) // Registers the input
         {
-            if (turnSpeedLeft <= turnMaxSpeed)
-            {
-                turnSpeedLeft += 2f * Time.deltaTime; // turnSpeed is multiplied over time to the cap
-            }
-            float turn = Input.GetAxis("Horizontal");
-            if (turn >= turnMaxRotation)
-            {
-                turn = turnMaxRotation;
-            }
-            boatBody.AddTorque(transform.up * turnSpeedLeft * turn);
-        }
-        else
-        {
-            if (turnSpeedLeft != 0f)
-            {
-                turnSpeedLeft -= Time.deltaTime; // turnSpeed is divided over time to zero
-            }
+            Quaternion boatRotation = Quaternion.Euler(-boatTurning * Time.fixedDeltaTime); // Quaternion formed to create the rotation possible
+            boatBody.MoveRotation(boatBody.rotation * boatRotation); // Rotates the boat when prompted
         }
 
         if (Input.GetKey("d")) // Registers the input
         {
-            if (turnSpeedRight <= turnMaxSpeed)
-            {
-                turnSpeedRight += 2f * Time.deltaTime; // turnSpeed is multiplied over time to the cap
-            }
-            float turn = Input.GetAxis("Horizontal");
-            if(turn >= turnMaxRotation)
-            {
-                turn = turnMaxRotation;
-            }
-            boatBody.AddTorque(transform.up * turnSpeedRight * turn);
-        }
-        else
-        {
-            if (turnSpeedRight != 0f)
-            {
-                turnSpeedRight -= Time.deltaTime; // turnSpeed is divided over time to zero
-            }
+            Quaternion boatRotation = Quaternion.Euler(boatTurning * Time.fixedDeltaTime); // Quaternion formed to create the rotation possible
+            boatBody.MoveRotation(boatBody.rotation * boatRotation); // Rotates the boat when prompted
         }
 
         cameraTransform.position = transform.position + transform.rotation * new Vector3(0, cameraHeight, -cameraDistanceFromPlayer);
