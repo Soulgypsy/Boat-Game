@@ -56,9 +56,13 @@
     <Analyzer Include="C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\Harpoon.cs" />
+    <Compile Include="Assets\Scripts\HarpoonCamera.cs" />
     <Compile Include="Assets\Scripts\HillGeneration.cs" />
+    <Compile Include="Assets\Scripts\HarpoonAim.cs" />
     <Compile Include="Assets\Scripts\BoatControls.cs" />
     <Compile Include="Assets\Scripts\WaveGeneration.cs" />
+    <Compile Include="Assets\Scripts\HarpoonBoatMovement.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
@@ -761,9 +765,17 @@
       <Project>{8C3047BD-F33D-24AF-26A8-5F211DD53E0F}</Project>
       <Name>Unity.EditorCoroutines.Editor</Name>
     </ProjectReference>
+    <ProjectReference Include="Cinemachine.csproj">
+      <Project>{584780B2-EC68-3DF8-A3B2-9B43D6A42A4A}</Project>
+      <Name>Cinemachine</Name>
+    </ProjectReference>
     <ProjectReference Include="Unity.Services.Core.Analytics.csproj">
       <Project>{78870F07-7943-9F5F-5A8A-D65B53F69E09}</Project>
       <Name>Unity.Services.Core.Analytics</Name>
+    </ProjectReference>
+    <ProjectReference Include="com.unity.cinemachine.editor.csproj">
+      <Project>{F9FDA088-D111-DC8C-FB6E-E708FFEB669C}</Project>
+      <Name>com.unity.cinemachine.editor</Name>
     </ProjectReference>
     <ProjectReference Include="Unity.VisualScripting.Shared.Editor.csproj">
       <Project>{BD787F58-1E7F-555C-C4E0-9E03D064FFDA}</Project>
