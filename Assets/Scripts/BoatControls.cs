@@ -21,7 +21,7 @@ public class BoatControls : MonoBehaviour
         cameraTransform = Camera.main.transform;
         moveSpeedForward = 0f;
         moveSpeedBackwards = 0f;
-        turnSpeed = 50f; // Change this for turning speed, along with the angular drag value in the rigidbody
+       // turnSpeed = 50f; // Change this for turning speed, along with the angular drag value in the rigidbody
         boatTurning = new Vector3(0, turnSpeed, 0);
     }
 
@@ -39,9 +39,9 @@ public class BoatControls : MonoBehaviour
         }
         else
         {
-            if (moveSpeedForward != 0f)
+            if (moveSpeedForward > 0f)
             {
-                moveSpeedForward -= 10f; // moveSpeed is subtracted over time to zero
+                moveSpeedForward -= 5f; // moveSpeed is subtracted over time to zero
             } 
         }
 
@@ -52,13 +52,13 @@ public class BoatControls : MonoBehaviour
                 moveSpeedBackwards += 5f; // moveSpeed is added over time to the cap
             }
             float force = Input.GetAxis("Vertical");
-            boatBody.AddForce(transform.forward * moveSpeedForward * force);
+            boatBody.AddForce(transform.forward * moveSpeedBackwards * force);
         }
         else
         {
-            if (moveSpeedBackwards != 0f)
+            if (moveSpeedBackwards > 0f)
             {
-                moveSpeedBackwards -= 10f; // moveSpeed is subtracted over time to zero
+                moveSpeedBackwards -= 5f; // moveSpeed is subtracted over time to zero
             }
         }
 
