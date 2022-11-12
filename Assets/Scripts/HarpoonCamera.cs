@@ -4,8 +4,18 @@ using UnityEngine;
 
 public class HarpoonCamera : MonoBehaviour
 {
+
+    [SerializeField] private bool lockon;
+    private Color color = Color.red;
+    private Camera cam;
+
     void Start()
     {
-        Cursor.lockState = CursorLockMode.Locked;
+        cam = GetComponent<Camera>();
+        if (lockon == true)
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+        }
+        
     }
 }

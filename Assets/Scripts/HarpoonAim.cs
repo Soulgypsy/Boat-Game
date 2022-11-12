@@ -8,6 +8,8 @@ public class HarpoonAim : MonoBehaviour
 {
     [Header("Aiming")]
     public Transform facing;
+    public Camera cam;
+    private Color color = Color.red;
 
     [Header("Firing")]
     public GameObject harpoonPrefab;
@@ -37,22 +39,11 @@ public class HarpoonAim : MonoBehaviour
         if (readyToFire == false)
         {
             transform.LookAt(transform.position -(currentHarpoon.transform.position - transform.position));
-
-            /*if (fireTimer < 10)
-            {
-                fireTimer += Time.deltaTime;
-            }
-            else if (fireTimer >= 10)
-            {
-                fireTimer = 0f;
-                readyToFire = true;
-            }*/
         }
         else if (readyToFire == true)
         {
             transform.LookAt(new Vector3(facing.position.x, transform.position.y, facing.position.z));
         }
-
     }
 
     public void Fire()

@@ -63,6 +63,9 @@
     <Compile Include="Assets\Scripts\HarpoonBoatMovement.cs" />
     <Compile Include="Assets\Scripts\BoatControls.cs" />
     <Compile Include="Assets\Scripts\WaveGeneration.cs" />
+    <Compile Include="Assets\Scripts\Hookable.cs" />
+    <Compile Include="Assets\Scripts\SelectionManager.cs" />
+    <Compile Include="Assets\Scripts\UiManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\ProjectSettings\ProjectVersion.txt" />
