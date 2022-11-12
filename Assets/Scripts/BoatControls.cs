@@ -7,6 +7,7 @@ public class BoatControls : MonoBehaviour
     public float moveSpeedForward;
     public float moveSpeedBackwards;
     public float turnSpeed;
+    public float turnAngle;
     public Vector3 boatTurning;
     public float moveMaxSpeed = 70f; // Change this for max speed, along with the drag value in the rigidbody
     public float cameraDistanceFromPlayer = 5f;
@@ -21,6 +22,7 @@ public class BoatControls : MonoBehaviour
         cameraTransform = Camera.main.transform;
         moveSpeedForward = 0f;
         moveSpeedBackwards = 0f;
+        turnAngle = 0f;
        // turnSpeed = 50f; // Change this for turning speed, along with the angular drag value in the rigidbody
         boatTurning = new Vector3(0, turnSpeed, 0);
     }
@@ -28,6 +30,11 @@ public class BoatControls : MonoBehaviour
     // FixedUpdate is called once per frame
     void FixedUpdate()
     {
+
+        Vector3 velocity = boatBody.velocity;
+        boatBody.velocity = Vector3.zero;
+        boatBody.velocity = transform.forward * velocity.magnitude;
+
         if (Input.GetKey("w")) // Registers the input
             {
             if(moveSpeedForward <= moveMaxSpeed)
