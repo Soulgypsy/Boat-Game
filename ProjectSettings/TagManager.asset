@@ -8,6 +8,8 @@ TagManager:
   - HarpoonLauncher
   - Hookable
   - NearHookable
+  - Harpoon
+  - Collectable
   layers:
   - Default
   - TransparentFX

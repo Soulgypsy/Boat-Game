@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 9073572424916459585}
   m_Layer: 0
   m_Name: Poon
-  m_TagString: Untagged
+  m_TagString: Harpoon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -133,6 +133,7 @@ MonoBehaviour:
   timeAlive: 5
   launcher: {fileID: 0}
   speed: 6
+  timerOn: 1
   rb: {fileID: 488303269490623579}
 --- !u!1 &4179198869417265906
 GameObject:
@@ -148,7 +149,7 @@ GameObject:
   - component: {fileID: 8930873057777630181}
   m_Layer: 0
   m_Name: Capsule
-  m_TagString: Untagged
+  m_TagString: Harpoon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

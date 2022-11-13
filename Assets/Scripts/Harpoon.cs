@@ -8,13 +8,16 @@ public class Harpoon : MonoBehaviour
     [SerializeField] private float fireTimer;
     [SerializeField] private float timeAlive;
     [SerializeField] private GameObject launcher;
-    [SerializeField] private float speed = 1.5f;
+    public float speed = 1.5f;
     
 
     [Header("Hitting Rocks")]
     [SerializeField] private bool timerOn = true;
     private bool stopLooking;
     public Rigidbody rb;
+
+    [Header("Collecting Iteams")]
+    [SerializeField] bool collected;
 
     private void Awake()
     {
@@ -56,8 +59,7 @@ public class Harpoon : MonoBehaviour
     {
         if (other.tag == "PlayerBoat" & fireTimer >= timeAlive || stopLooking == true)
         {
-            launcher.GetComponent<HarpoonAim>().HarpoonDead();
-            Destroy(gameObject);
+            DestroyHarpoon();
         }
     }
 
@@ -70,6 +72,13 @@ public class Harpoon : MonoBehaviour
             Destroy(rb);
             launcher.GetComponent<HarpoonAim>().HarpoonHit();
         }
+        else if (collision.gameObject.tag == "Collectable" & collected == false)
+        {
+            timerOn = false;
+            fireTimer = 0f;
+            transform.SetParent(collision.transform);
+        }
+        
     }
 
     public void ReturnToBoat()
@@ -84,5 +93,11 @@ public class Harpoon : MonoBehaviour
         {
             stopLooking = true;
         }
+    }
+
+    public void DestroyHarpoon()
+    {
+        launcher.GetComponent<HarpoonAim>().HarpoonDead();
+        Destroy(gameObject);
     }
 }

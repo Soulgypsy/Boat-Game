@@ -23,6 +23,9 @@ public class HarpoonAim : MonoBehaviour
     [SerializeField] private bool hit;
     public HarpoonBoatMovement movement;
 
+    [Header("Iteams")]
+    public Transform collecionArea;
+
 
     void Update()
     {
