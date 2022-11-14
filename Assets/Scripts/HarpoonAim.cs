@@ -16,16 +16,24 @@ public class HarpoonAim : MonoBehaviour
     [SerializeField] private GameObject currentHarpoon;
     public Transform spawnPoint;
     public float speed = 10f;
+    public float returnSpeed = 10f;
     public bool readyToFire = true;
-    public float fireTimer;
 
     [Header("Moving Towards Harpoon")]
     [SerializeField] private bool hit;
     public HarpoonBoatMovement movement;
 
-    [Header("Iteams")]
-    public Transform collecionArea;
+    [Header("Items")]
+    [HideInInspector] public Transform collecionArea;
+    
 
+    [Header("Rope")]
+    private LineRenderer lr;
+
+    private void Awake()
+    {
+        lr = GetComponent<LineRenderer>();
+    }
 
     void Update()
     {
@@ -49,6 +57,11 @@ public class HarpoonAim : MonoBehaviour
         }
     }
 
+    private void LateUpdate()
+    {
+        DrawRope();
+    }
+
     public void Fire()
     {
         var harpoon = Instantiate(harpoonPrefab, spawnPoint.position, spawnPoint.rotation);
@@ -59,7 +72,8 @@ public class HarpoonAim : MonoBehaviour
     public void HarpoonDead()
     {
         readyToFire = true;
-        fireTimer = 0;
+        lr.positionCount = 0;
+        movement.moving = false;
     }
 
     public void HarpoonHit()
@@ -68,4 +82,14 @@ public class HarpoonAim : MonoBehaviour
         movement.Actived(currentHarpoon);
     }
 
+    void DrawRope()
+    {
+        if (readyToFire) return;
+
+        lr.positionCount = 2;
+        lr.SetPosition(0, spawnPoint.position);
+        lr.SetPosition(1, currentHarpoon.GetComponent<Harpoon>().ropePosition.position);
+
+        
+    }
 }
