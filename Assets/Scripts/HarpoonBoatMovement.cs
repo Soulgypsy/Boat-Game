@@ -6,7 +6,7 @@ public class HarpoonBoatMovement : MonoBehaviour
 {
     [SerializeField] private GameObject harpoon;
     [SerializeField] private float speed;
-    [SerializeField] private bool moving;
+    public bool moving;
     
     void Update()
     {

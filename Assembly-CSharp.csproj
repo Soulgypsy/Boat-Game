@@ -63,10 +63,10 @@
     <Compile Include="Assets\Scripts\HarpoonAim.cs" />
     <Compile Include="Assets\Scripts\Hookable.cs" />
     <Compile Include="Assets\Scripts\HarpoonBoatMovement.cs" />
+    <Compile Include="Assets\Scripts\Collectables.cs" />
     <Compile Include="Assets\Scripts\BoatControls.cs" />
     <Compile Include="Assets\Scripts\WaveGeneration.cs" />
     <Compile Include="Assets\Scripts\UiManager.cs" />
-    <Compile Include="Assets\Scripts\Collectables.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\ProjectSettings\ProjectVersion.txt" />
