@@ -73,6 +73,7 @@ public class BoatControls : MonoBehaviour
         {
             Quaternion boatRotation = Quaternion.Euler(-boatTurning * Time.fixedDeltaTime); // Quaternion formed to create the rotation possible
             boatBody.MoveRotation(boatBody.rotation * boatRotation); // Rotates the boat when prompted
+
         }
 
         if (Input.GetKey("d")) // Registers the input

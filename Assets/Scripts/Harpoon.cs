@@ -8,7 +8,7 @@ public class Harpoon : MonoBehaviour
     [SerializeField] private float fireTimer;
     [SerializeField] private float timeAlive;
     [SerializeField] private GameObject launcher;
-    public float speed;
+    public float speed = 1.5f;
     
 
     [Header("Hitting Rocks")]
@@ -19,13 +19,9 @@ public class Harpoon : MonoBehaviour
     [Header("Collecting Iteams")]
     [SerializeField] bool collected;
 
-    [Header("Rope")]
-    public Transform ropePosition;
-
     private void Awake()
     {
         FindBoat();
-        speed = launcher.GetComponent<HarpoonAim>().returnSpeed;
     }
 
     void timer()
@@ -104,6 +100,4 @@ public class Harpoon : MonoBehaviour
         launcher.GetComponent<HarpoonAim>().HarpoonDead();
         Destroy(gameObject);
     }
-
-    
 }

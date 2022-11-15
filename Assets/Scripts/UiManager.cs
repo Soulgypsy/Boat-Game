@@ -9,6 +9,11 @@ public class UiManager : MonoBehaviour
     [SerializeField] bool menuUp;
     [SerializeField] Animator QuestMenuAnimator;
 
+    void Start()
+    {
+        
+    }
+
 
     void Update()
     {
