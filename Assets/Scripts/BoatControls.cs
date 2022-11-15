@@ -32,6 +32,7 @@ public class BoatControls : MonoBehaviour
     {
 
         Vector3 velocity = boatBody.velocity;
+        var opposite = -boatBody.velocity;
         boatBody.velocity = Vector3.zero;
         boatBody.velocity = transform.forward * velocity.magnitude;
 
@@ -56,9 +57,9 @@ public class BoatControls : MonoBehaviour
         {
             if (moveSpeedBackwards <= moveMaxSpeed)
             {
-                moveSpeedBackwards += 5f; // moveSpeed is added over time to the cap
+                moveSpeedBackwards += 10f; // moveSpeed is added over time to the cap
             }
-            float force = Input.GetAxis("Vertical");
+            float force = Input.GetAxis("Vertical") * 2f;
             boatBody.AddForce(transform.forward * moveSpeedBackwards * force);
         }
         else
