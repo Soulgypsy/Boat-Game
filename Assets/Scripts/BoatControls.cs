@@ -32,7 +32,6 @@ public class BoatControls : MonoBehaviour
     {
 
         Vector3 velocity = boatBody.velocity;
-        var opposite = -boatBody.velocity;
         boatBody.velocity = Vector3.zero;
         boatBody.velocity = transform.forward * velocity.magnitude;
 
